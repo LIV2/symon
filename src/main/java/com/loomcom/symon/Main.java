@@ -28,6 +28,7 @@ package com.loomcom.symon;
 import com.loomcom.symon.machines.MulticompMachine;
 import com.loomcom.symon.machines.SimpleMachine;
 import com.loomcom.symon.machines.SymonMachine;
+import com.loomcom.symon.machines.LIV2Machine;
 import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -49,6 +50,9 @@ public class Main {
             if(arg.equals("-machine") && (i+1) < args.length) {
                 String machine = args[i+1].trim().toLowerCase(Locale.ENGLISH);
                 switch (machine) {
+                    case "LIV2":
+                        machineClass = LIV2Machine.class;
+                        break;
                     case "symon":
                         machineClass = SymonMachine.class;
                         break;
@@ -64,7 +68,7 @@ public class Main {
         
         while (true) {
             if (machineClass == null) {
-                Object[] possibilities = {"Symon", "Multicomp", "Simple"};
+                Object[] possibilities = {"Symon", "Multicomp", "Simple", "LIV2"};
                 String s = (String)JOptionPane.showInputDialog(
                                 null,
                                 "Please choose the machine type to be emulated:",
@@ -79,6 +83,8 @@ public class Main {
                     machineClass = MulticompMachine.class;
                 } else if (s != null && s.equals("Simple")) {
                     machineClass = SimpleMachine.class;
+                } else if (s != null && s.equals("LIV2")) {
+                    machineClass = LIV2Machine.class;
                 } else {
                     machineClass = SymonMachine.class;
                 }
