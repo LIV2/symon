@@ -50,7 +50,7 @@ public class Main {
             if(arg.equals("-machine") && (i+1) < args.length) {
                 String machine = args[i+1].trim().toLowerCase(Locale.ENGLISH);
                 switch (machine) {
-                    case "LIV2":
+                    case "liv2":
                         machineClass = LIV2Machine.class;
                         break;
                     case "symon":
