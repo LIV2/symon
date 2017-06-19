@@ -233,7 +233,7 @@ public interface InstructionTable {
         Mode.ABS, Mode.ABS, Mode.ABS, Mode.ZPR,   // 0x4c-0x4f
         Mode.REL, Mode.INY, Mode.ZPI, Mode.NUL,   // 0x50-0x53
         Mode.NUL, Mode.ZPX, Mode.ZPX, Mode.ZPG,   // 0x54-0x57
-        Mode.IMP, Mode.ABY, Mode.IMM, Mode.NUL,   // 0x58-0x5b
+        Mode.IMP, Mode.ABY, Mode.IMP, Mode.NUL,   // 0x58-0x5b
         Mode.NUL, Mode.ABX, Mode.ABX, Mode.ZPR,   // 0x5c-0x5f
         Mode.IMP, Mode.XIN, Mode.NUL, Mode.NUL,   // 0x60-0x63
         Mode.ZPG, Mode.ZPG, Mode.ZPG, Mode.ZPG,   // 0x64-0x67
@@ -241,7 +241,7 @@ public interface InstructionTable {
         Mode.IND, Mode.ABS, Mode.ABS, Mode.ZPR,   // 0x6c-0x6f
         Mode.REL, Mode.INY, Mode.ZPI, Mode.NUL,   // 0x70-0x73
         Mode.ZPX, Mode.ZPX, Mode.ZPX, Mode.ZPG,   // 0x74-0x77
-        Mode.IMP, Mode.ABY, Mode.IMM, Mode.NUL,   // 0x78-0x7b
+        Mode.IMP, Mode.ABY, Mode.IMP, Mode.NUL,   // 0x78-0x7b
         Mode.AIX, Mode.ABX, Mode.ABX, Mode.ZPR,   // 0x7c-0x7f
         Mode.REL, Mode.XIN, Mode.NUL, Mode.NUL,   // 0x80-0x83
         Mode.ZPG, Mode.ZPG, Mode.ZPG, Mode.ZPG,   // 0x84-0x87
@@ -307,22 +307,22 @@ public interface InstructionTable {
      * in NMOS mode.
      */
     int[] instructionClocksNmos = {
-        7, 6, 0, 0, 0, 3, 5, 0, 3, 2, 2, 0, 0, 4, 6, 0,   // 0x00-0x0f
-        2, 5, 0, 0, 0, 4, 6, 0, 2, 4, 0, 0, 0, 4, 7, 0,   // 0x10-0x1f
-        6, 6, 0, 0, 3, 3, 5, 0, 4, 2, 2, 0, 4, 4, 6, 0,   // 0x20-0x2f
-        2, 5, 0, 0, 0, 4, 6, 0, 2, 4, 0, 0, 0, 4, 7, 0,   // 0x30-0x3f
-        6, 6, 0, 0, 0, 3, 5, 0, 3, 2, 2, 0, 3, 4, 6, 0,   // 0x40-0x4f
-        2, 5, 0, 0, 0, 4, 6, 0, 2, 4, 0, 0, 0, 4, 7, 0,   // 0x50-0x5f
-        6, 6, 0, 0, 0, 3, 5, 0, 4, 2, 2, 0, 5, 4, 6, 0,   // 0x60-0x6f
-        2, 5, 0, 0, 0, 4, 6, 0, 2, 4, 0, 0, 0, 4, 7, 0,   // 0x70-0x7f
-        2, 6, 0, 0, 3, 3, 3, 0, 2, 0, 2, 0, 4, 4, 4, 0,   // 0x80-0x8f
-        2, 6, 0, 0, 4, 4, 4, 0, 2, 5, 2, 0, 0, 5, 0, 0,   // 0x90-0x9f
-        2, 6, 2, 0, 3, 3, 3, 0, 2, 2, 2, 0, 4, 4, 4, 0,   // 0xa0-0xaf
-        2, 5, 0, 0, 4, 4, 4, 0, 2, 4, 2, 0, 4, 4, 4, 0,   // 0xb0-0xbf
-        2, 6, 0, 0, 3, 3, 5, 0, 2, 2, 2, 0, 4, 4, 6, 0,   // 0xc0-0xcf
-        2, 5, 0, 0, 0, 4, 6, 0, 2, 4, 0, 0, 0, 4, 7, 0,   // 0xd0-0xdf
-        2, 6, 0, 0, 3, 3, 5, 0, 2, 2, 2, 0, 4, 4, 6, 0,   // 0xe0-0xef
-        2, 5, 0, 0, 0, 4, 6, 0, 2, 4, 0, 0, 0, 4, 7, 0    // 0xf0-0xff
+        7, 6, 1, 8, 3, 3, 5, 5, 3, 2, 2, 2, 4, 4, 6, 6,   // 0x00-0x0f
+        2, 5, 1, 8, 4, 4, 6, 6, 2, 4, 2, 7, 4, 4, 7, 7,   // 0x10-0x1f
+        6, 6, 1, 8, 3, 3, 5, 5, 4, 2, 2, 2, 4, 4, 6, 6,   // 0x20-0x2f
+        2, 5, 1, 8, 4, 4, 6, 6, 2, 4, 2, 7, 4, 4, 7, 7,   // 0x30-0x3f
+        6, 6, 1, 8, 3, 3, 5, 5, 3, 2, 2, 2, 3, 4, 6, 6,   // 0x40-0x4f
+        2, 5, 1, 8, 4, 4, 6, 6, 2, 4, 2, 7, 4, 4, 7, 7,   // 0x50-0x5f
+        6, 6, 1, 8, 3, 3, 5, 5, 4, 2, 2, 2, 5, 4, 6, 6,   // 0x60-0x6f
+        2, 5, 1, 8, 4, 4, 6, 6, 2, 4, 2, 7, 4, 4, 7, 7,   // 0x70-0x7f
+        2, 6, 2, 6, 3, 3, 3, 3, 2, 2, 2, 2, 4, 4, 4, 4,   // 0x80-0x8f
+        2, 6, 1, 6, 4, 4, 4, 4, 2, 5, 2, 5, 5, 5, 5, 5,   // 0x90-0x9f
+        2, 6, 2, 6, 3, 3, 3, 3, 2, 2, 2, 2, 4, 4, 4, 4,   // 0xa0-0xaf
+        2, 5, 1, 5, 4, 4, 4, 4, 2, 4, 2, 4, 4, 4, 4, 4,   // 0xb0-0xbf
+        2, 6, 2, 8, 3, 3, 5, 5, 2, 2, 2, 2, 4, 4, 6, 6,   // 0xc0-0xcf
+        2, 5, 1, 8, 4, 4, 6, 6, 2, 4, 2, 7, 4, 4, 7, 7,   // 0xd0-0xdf
+        2, 6, 2, 8, 3, 3, 5, 5, 2, 2, 2, 2, 4, 4, 6, 6,   // 0xe0-0xef
+        2, 5, 1, 8, 4, 4, 6, 6, 2, 4, 2, 7, 4, 4, 7, 7    // 0xf0-0xff
     };
 
     /**
